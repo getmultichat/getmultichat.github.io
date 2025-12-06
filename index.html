@@ -14,6 +14,8 @@
         <option value="ohio">Ohio</option>
         <option value="singapore">Singapore</option>
     </select>
+    <p>--- OR ---</p>
+    <input type="text" id="custom-server" placeholder="Enter custom server URL">
     <button id="launch-button">Launch</button>
     <script>
         launchURLs = {
@@ -33,12 +35,16 @@
         };
     
         document.getElementById("launch-button").onclick = function() {
+            if (document.getElementById("custom-server").value) {
+                var customURL = document.getElementById("custom-server").value;
+                window.location.href = "https://simplechat-gd38.onrender.com/?c=" + encodeURIComponent(customURL);
+                return;
+            }
             var select = document.getElementById("server-select");
             var server = select.value;
             var url = launchURLs[server];
             window.location.href = url;
         };
-
 
         params = new URLSearchParams(window.location.search);
         if (params.has('s')) {
