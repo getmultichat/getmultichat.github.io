@@ -15,7 +15,6 @@
         <option value="singapore">Singapore</option>
     </select>
     <button id="launch-button">Launch</button>
-    <iframe id="multichat-frame" style="width:100%; height:100%; display: none;"></iframe>
     <script>
         launchURLs = {
             "virginia": "https://getmultichat.github.io/?s=v",
@@ -32,15 +31,14 @@
             "oh": "ohio",
             "s": "singapore"
         };
-
+    
         document.getElementById("launch-button").onclick = function() {
             var select = document.getElementById("server-select");
             var server = select.value;
             var url = launchURLs[server];
-            var frame = document.getElementById("multichat-frame");
-            frame.src = url;
-            frame.style.display = "block";
+            window.location.href = url;
         };
+
 
         params = new URLSearchParams(window.location.search);
         if (params.has('s')) {
